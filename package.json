@@ -7,13 +7,12 @@
     "state-reducer"
   ],
   "homepage": "https://codesandbox.io/s/new",
-  "main": "src/index.js",
-  "dependencies": {
+  "main": "src/createStore.js",
+  "peerDependencies": {
     "react": "16.4.0-alpha.7926752",
     "react-dom": "16.4.0-alpha.7926752",
     "react-scripts": "1.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
