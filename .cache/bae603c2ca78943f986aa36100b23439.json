@@ -1,0 +1,1 @@
+{"dependencies":[{"name":"./index.js","dynamic":true}],"generated":{"html":"<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <title>react-state-reducer demos</title>\n</head>\n\n<body>\n\n  <div id=\"root\"></div>\n\n  <script src=\"/dist/f7e0da523631ed55fcaa46144be6c8e6.js\"></script>\n</body>\n\n</html>"},"hash":"ba4e278c3b2ca02532735ec96a622f41","cacheData":{}}
