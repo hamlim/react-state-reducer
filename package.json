@@ -2,24 +2,25 @@
   "name": "react-state-reducer",
   "version": "1.0.1",
   "description": "",
-  "keywords": [
-    "react",
-    "state-reducer"
-  ],
+  "keywords": ["react", "state-reducer"],
   "homepage": "https://codesandbox.io/s/new",
-  "main": "src/createStore.js",
+  "main": "pkg/createStore.js",
   "peerDependencies": {
     "react": "16.3.0-alpha.1"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
     "react": "16.3.0-alpha.1",
     "react-dom": "16.3.0-alpha.1"
   },
   "scripts": {
-    "dev": "npx parcel-bundler ./public/index.html"
+    "dev": "npx parcel-bundler ./public/index.html",
+    "build": "babel ./src --out-dir ./pkg"
   }
 }
