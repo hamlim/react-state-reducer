@@ -12,7 +12,9 @@ const INITIAL_STATE = {
   count: 0,
 }
 
-const counterReducer = action => (state = INITIAL_STATE) => {
+const counterReducer = action => (
+  state = INITIAL_STATE,
+) => {
   switch (action.type) {
     case 'INC':
       return { count: state.count + 1 }
@@ -30,9 +32,13 @@ export default () => (
     <Consumer>
       {({ count, dispatch }) => (
         <Fragment>
-          <button onClick={() => dispatch({ type: 'DEC' })}>-</button>
+          <button onClick={() => dispatch({ type: 'DEC' })}>
+            -
+          </button>
           {count}
-          <button onClick={() => dispatch({ type: 'INC' })}>+</button>
+          <button onClick={() => dispatch({ type: 'INC' })}>
+            +
+          </button>
         </Fragment>
       )}
     </Consumer>
@@ -50,7 +56,7 @@ The first is the `reducer`. A `reducer` is a higher order function (meaning it r
 
 That was a lot of different words describing what this is, lets look at some code to walk through this.
 
-1. Lets start with the higher order function:
+1.  Lets start with the higher order function:
 
 ```js
 const myReducer = someAction => {
@@ -66,7 +72,7 @@ This function accepts a single argument (`someAction`) and returns a function. W
 const myReducer = action => state => { ... };
 ```
 
-2. Handling updates within the returned function:
+2.  Handling updates within the returned function:
 
 ```js
 const myReducer = action => state => {
@@ -141,4 +147,50 @@ and then uses the result of calling the reducer as the initial state for the sto
   Provider: Node,
   Consumer: Node
 }
+```
+
+#### `Provider`
+
+The Provider component exposes two props, the first is `children` which can be a single component, or many components.
+
+The second prop is `onUpdate` which is a function that will be called after each state update happens, it is called with the updated state.
+
+```jsx
+<Provider
+  onUpdate={newState => {
+    /* Maybe sync state to localStorage, or something else */
+  }}
+>
+  <App />
+</Provider>
+```
+
+#### `Consumer`
+
+The Consumer component has one prop, `children`, children is a function that gets called with an object with the following keys:
+
+* `dispatch`
+* top level keys from state
+
+For example if your state shape looks like this:
+
+```js
+{
+  todos: [],
+  text: ''
+}
+```
+
+the consumer children function would look like the following:
+
+```jsx
+<Consumer>
+  {({
+    dispatch,
+    todos,
+    text
+  }) => (
+    ...
+  )}
+</Consumer>
 ```
