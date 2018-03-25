@@ -21,7 +21,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var createStore = function createStore(reducer) {
-  var initialState = reducer({ type: '@@INIT', payload: null })(undefined);
+  var initialState = reducer({
+    type: '@@INIT',
+    payload: null
+  })(undefined);
   var ctx = (0, _react.createContext)(initialState);
 
   var Provider = function (_React$PureComponent) {
@@ -39,7 +42,9 @@ var createStore = function createStore(reducer) {
       }
 
       return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.state = _extends({}, initialState), _this.dispatch = function (action) {
-        return _this.setState(reducer(action));
+        return _this.setState(reducer(action), function () {
+          _this.props.onUpdate(_this.state);
+        });
       }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -48,7 +53,9 @@ var createStore = function createStore(reducer) {
       value: function render() {
         return _react2.default.createElement(
           ctx.Provider,
-          { value: _extends({}, this.state, { dispatch: this.dispatch }) },
+          {
+            value: _extends({}, this.state, { dispatch: this.dispatch })
+          },
           this.props.children
         );
       }
@@ -57,6 +64,9 @@ var createStore = function createStore(reducer) {
     return Provider;
   }(_react2.default.PureComponent);
 
+  Provider.defaultProps = {
+    onUpdate: function onUpdate() {}
+  };
   return { Provider: Provider, Consumer: ctx.Consumer };
 };
 
