@@ -1,6 +1,6 @@
 {
   "name": "react-state-reducer",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "keywords": [
     "react",
@@ -9,7 +9,7 @@
   "homepage": "https://codesandbox.io/s/new",
   "main": "pkg/createStore.js",
   "peerDependencies": {
-    "react": "16.3.0-alpha.1"
+    "react": "^16.3.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
