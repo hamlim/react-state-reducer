@@ -194,3 +194,7 @@ the consumer children function would look like the following:
   )}
 </Consumer>
 ```
+
+### Redux
+
+This library is highly influenced by all the great work put into Redux and React-Redux. For some more information on the differences between this library and Redux see [redux](./docs/redux.md).
