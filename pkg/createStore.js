@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.transform = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -27,8 +28,8 @@ var createStore = function createStore(reducer) {
   })(undefined);
   var ctx = (0, _react.createContext)(initialState);
 
-  var Provider = function (_React$PureComponent) {
-    _inherits(Provider, _React$PureComponent);
+  var Provider = function (_React$Component) {
+    _inherits(Provider, _React$Component);
 
     function Provider() {
       var _ref;
@@ -41,7 +42,7 @@ var createStore = function createStore(reducer) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.state = _extends({}, initialState), _this.dispatch = function (action) {
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.state = { initialState: initialState }, _this.dispatch = function (action) {
         return _this.setState(reducer(action), function () {
           _this.props.onUpdate(_this.state);
         });
@@ -54,7 +55,9 @@ var createStore = function createStore(reducer) {
         return _react2.default.createElement(
           ctx.Provider,
           {
-            value: _extends({}, this.state, { dispatch: this.dispatch })
+            value: _extends({}, this.state.initialState, {
+              dispatch: this.dispatch
+            })
           },
           this.props.children
         );
@@ -62,7 +65,7 @@ var createStore = function createStore(reducer) {
     }]);
 
     return Provider;
-  }(_react2.default.PureComponent);
+  }(_react2.default.Component);
 
   Provider.defaultProps = {
     onUpdate: function onUpdate() {}
@@ -71,3 +74,15 @@ var createStore = function createStore(reducer) {
 };
 
 exports.default = createStore;
+
+/**
+ * Helper to transform classic redux reducers to new format
+ */
+
+var transform = exports.transform = function transform(reducer) {
+  return function (action) {
+    return function (state) {
+      return reducer(state, action);
+    };
+  };
+};

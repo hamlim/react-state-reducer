@@ -5,10 +5,10 @@ const createStore = reducer => {
     type: '@@INIT',
     payload: null,
   })(undefined)
-  const ctx = createContext(initialState)
+  let ctx = createContext(initialState)
 
-  class Provider extends React.PureComponent {
-    state = { ...initialState }
+  class Provider extends React.Component {
+    state = { initialState }
     dispatch = action =>
       this.setState(reducer(action), () => {
         this.props.onUpdate(this.state)
@@ -16,7 +16,10 @@ const createStore = reducer => {
     render() {
       return (
         <ctx.Provider
-          value={{ ...this.state, dispatch: this.dispatch }}
+          value={{
+            ...this.state.initialState,
+            dispatch: this.dispatch,
+          }}
         >
           {this.props.children}
         </ctx.Provider>
@@ -30,3 +33,9 @@ const createStore = reducer => {
 }
 
 export default createStore
+
+/**
+ * Helper to transform classic redux reducers to new format
+ */
+export const transform = reducer => action => state =>
+  reducer(state, action)
