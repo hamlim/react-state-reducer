@@ -8,7 +8,7 @@ const createStore = reducer => {
   let ctx = createContext(initialState)
 
   class Provider extends React.Component {
-    state = { initialState }
+    state = { ...initialState }
     dispatch = action =>
       this.setState(reducer(action), () => {
         this.props.onUpdate(this.state)
@@ -17,7 +17,7 @@ const createStore = reducer => {
       return (
         <ctx.Provider
           value={{
-            ...this.state.initialState,
+            ...this.state,
             dispatch: this.dispatch,
           }}
         >
