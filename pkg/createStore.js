@@ -42,7 +42,7 @@ var createStore = function createStore(reducer) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.state = { initialState: initialState }, _this.dispatch = function (action) {
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Provider.__proto__ || Object.getPrototypeOf(Provider)).call.apply(_ref, [this].concat(args))), _this), _this.state = _extends({}, initialState), _this.dispatch = function (action) {
         return _this.setState(reducer(action), function () {
           _this.props.onUpdate(_this.state);
         });
@@ -55,7 +55,7 @@ var createStore = function createStore(reducer) {
         return _react2.default.createElement(
           ctx.Provider,
           {
-            value: _extends({}, this.state.initialState, {
+            value: _extends({}, this.state, {
               dispatch: this.dispatch
             })
           },
