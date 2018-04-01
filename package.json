@@ -2,13 +2,10 @@
   "name": "react-state-reducer",
   "version": "1.2.3",
   "description": "",
-  "keywords": [
-    "react",
-    "state-reducer",
-    "redux"
-  ],
-  "homepage": "https://github.com/hamlim/react-state-reducer",
-  "main": "pkg/createStore.js",
+  "keywords": ["react", "state-reducer", "redux"],
+  "homepage":
+    "https://github.com/hamlim/react-state-reducer",
+  "main": "pkg/index.js",
   "peerDependencies": {
     "react": "^16.3.0"
   },
