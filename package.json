@@ -2,12 +2,9 @@
   "name": "react-state-reducer",
   "version": "1.3.0",
   "description": "",
-  "keywords": [
-    "react",
-    "state-reducer",
-    "redux"
-  ],
-  "homepage": "https://github.com/hamlim/react-state-reducer",
+  "keywords": ["react", "state-reducer", "redux"],
+  "homepage":
+    "https://github.com/hamlim/react-state-reducer",
   "main": "pkg/index.js",
   "peerDependencies": {
     "react": "^16.3.0"
@@ -20,11 +17,15 @@
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
+    "jest": "^22.4.3",
     "react": "16.3.0",
-    "react-dom": "16.3.0"
+    "react-dom": "16.3.0",
+    "react-testing-library": "^1.9.2"
   },
   "scripts": {
     "dev": "npx parcel-bundler ./public/index.html",
-    "build": "babel ./src --out-dir ./pkg"
+    "build":
+      "babel ./src --out-dir ./pkg --ignore spec.js,test.js",
+    "test": "jest --watchAll"
   }
 }
