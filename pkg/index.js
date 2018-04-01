@@ -21,5 +21,11 @@ Object.defineProperty(exports, 'CreateStore', {
     return _interopRequireDefault(_component).default;
   }
 });
+Object.defineProperty(exports, 'transform', {
+  enumerable: true,
+  get: function get() {
+    return _createStore.transform;
+  }
+});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
