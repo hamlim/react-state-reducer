@@ -29,7 +29,24 @@ const createStore = reducer => {
   Provider.defaultProps = {
     onUpdate() {},
   }
-  return { Provider, Consumer: ctx.Consumer }
+  const Consumer = ({ children, selector = s => s }) => (
+    <ctx.Consumer>
+      {({ dispatch, ...state }) => {
+        if (Array.isArray(selector)) {
+          return children(
+            { dispatch, ...state },
+            selector.map(s => s(state)),
+          )
+        } else {
+          return children(
+            { dispatch, ...state },
+            selector(state),
+          )
+        }
+      }}
+    </ctx.Consumer>
+  )
+  return { Provider, Consumer }
 }
 
 export default createStore
