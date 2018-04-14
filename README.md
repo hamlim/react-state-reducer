@@ -208,7 +208,3 @@ Consumer also optionally supports a `selector` prop, which can either take in an
 ### Redux
 
 This library is highly influenced by all the great work put into Redux and React-Redux. For some more information on the differences between this library and Redux see [redux](./docs/redux.md).
-
-```
-
-```
