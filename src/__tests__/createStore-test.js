@@ -39,6 +39,59 @@ describe('createStore', () => {
       }),
     )
   })
+
+  it('Consumer supports a selector prop', () => {
+    const selector = s => s.counter
+    const { Provider, Consumer } = createStore(mockReducer)
+    const mock = jest.fn()
+    render(
+      <Provider>
+        <Consumer selector={selector}>
+          {(...args) => {
+            mock(...args)
+            return null
+          }}
+        </Consumer>
+      </Provider>,
+    )
+    expect(mock).toHaveBeenCalledWith(
+      // the state + dispatch object
+      expect.objectContaining({
+        dispatch: expect.any(Function),
+        counter: expect.any(Number),
+      }),
+      // the value of the counter
+      0,
+    )
+  })
+
+  it('Consumer supports an array of selectors', () => {
+    const selectCount = s => s.counter
+    const selectTodos = s => s.todos
+    const reducer = () => (s = { counter: 0, todos: [] }) =>
+      s
+    const { Provider, Consumer } = createStore(reducer)
+    const mock = jest.fn()
+    render(
+      <Provider>
+        <Consumer selector={[selectCount, selectTodos]}>
+          {(...args) => {
+            mock(...args)
+            return null
+          }}
+        </Consumer>
+      </Provider>,
+    )
+    expect(mock).toHaveBeenCalledWith(
+      // the state + dispatch object
+      expect.objectContaining({
+        dispatch: expect.any(Function),
+        counter: expect.any(Number),
+      }),
+      // the value of the counter and the value of todos
+      [0, []],
+    )
+  })
 })
 
 describe('transform', () => {

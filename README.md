@@ -167,7 +167,7 @@ The second prop is `onUpdate` which is a function that will be called after each
 
 #### `Consumer`
 
-The Consumer component has one prop, `children`, children is a function that gets called with an object with the following keys:
+The Consumer component has one core prop, `children`, children is a function that gets called with an object with the following keys:
 
 * `dispatch`
 * top level keys from state
@@ -195,6 +195,20 @@ the consumer children function would look like the following:
 </Consumer>
 ```
 
+Consumer also optionally supports a `selector` prop, which can either take in an array of functions or a single function to select your slice of state you care about:
+
+```jsx
+<Consumer selector={s => s.todos}>
+  {({ dispatch }, todos) => {
+    /* */
+  }}
+</Consumer>
+```
+
 ### Redux
 
 This library is highly influenced by all the great work put into Redux and React-Redux. For some more information on the differences between this library and Redux see [redux](./docs/redux.md).
+
+```
+
+```

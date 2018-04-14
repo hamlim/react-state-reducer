@@ -24,12 +24,13 @@ describe('CreateStore component', () => {
   it('correctly updates providers and consumers when swapping reducers', () => {
     const a = () => (s = { text: 'Reducer A' }) => s
     const b = () => (s = { text: 'Reducer B' }) => s
+    const selectText = s => s.text
     const { container, getByTestId } = render(
       <CreateStore reducer={a}>
         {({ Provider, Consumer }) => (
           <Provider>
-            <Consumer>
-              {({ text }) => (
+            <Consumer selector={selectText}>
+              {(state, text) => (
                 <div data-testid="container">{text}</div>
               )}
             </Consumer>
